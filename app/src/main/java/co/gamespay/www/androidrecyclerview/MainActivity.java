@@ -26,27 +26,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Creating reference
-        ImageView img1 = findViewById(R.id.img1);
-        ImageView img2 = findViewById(R.id.img2);
-
-        //Image URLs
-        String[]  urls = { "https://avatars0.githubusercontent.com/u/1?v=4",
-                            "https://avatars0.githubusercontent.com/u/3?v=4"};
-        //Showing image in image view
-        Glide.with(this).load(urls[0]).into(img1);
-        Glide.with(this).load(urls[1]).into(img2);
+        final RecyclerView programmingList  = findViewById(R.id.programmingList);
+        //Assigning layout manager to this recycler view
+        programmingList.setLayoutManager(new LinearLayoutManager(this));
 
         StringRequest request = new StringRequest(URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Success Listener
+                //Success Responce Listener
                 Log.d("CODE", response);
                 //Creating GSON object using class GsonBuilder
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 //Passing responce using gson method and defining user array type responce
                 User[] users = gson.fromJson(response, User[].class);
+
+                //Binding our recycler here
+                programmingList.setAdapter(new ProgrammingAdapter(MainActivity.this, users));
             }
         }, new Response.ErrorListener() {
             @Override
@@ -61,10 +57,6 @@ public class MainActivity extends AppCompatActivity {
         //Adding request to queue
         queue.add(request);
 
-        //RecyclerView programmingList  = findViewById(R.id.programmingList);
-        //programmingList.setLayoutManager(new LinearLayoutManager(this));
-        //String[] language = {"Java" , "PHP", "Python", "Swift", "Node.js", "Angular.js"};
-        //programmingList.setAdapter(new ProgrammingAdapter(language));
 
     }
 }
