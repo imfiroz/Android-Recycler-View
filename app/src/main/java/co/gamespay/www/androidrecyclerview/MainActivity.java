@@ -11,9 +11,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView programmingList  = (RecyclerView) findViewById(R.id.programmingList);
+        RecyclerView programmingList  = findViewById(R.id.programmingList);
         programmingList.setLayoutManager(new LinearLayoutManager(this));
-        String[] language = {"Java" , "PHP", "Python", "Swift", "Node.js", "Angular.js","Java" , "PHP", "Python", "Swift", "Node.js", "Angular.js"};
+        String[] language = {"Java" , "PHP", "Python", "Swift", "Node.js", "Angular.js"};
         programmingList.setAdapter(new ProgrammingAdapter(language));
     }
 }
