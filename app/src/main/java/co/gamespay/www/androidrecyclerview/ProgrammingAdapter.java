@@ -11,10 +11,11 @@ import android.widget.TextView;
  * Created by firoz on 15-02-2018.
  */
 
-public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.ProgrammingViewHolder> {
+public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.ProgrammingViewHolder>
+{
 
 
-    private final String[] data;
+    private  String[] data;
 
     public ProgrammingAdapter(String[] data)
     {
@@ -45,8 +46,8 @@ public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.
         TextView txtTitle;
         public ProgrammingViewHolder(View itemView) {
             super(itemView);
-            imgIcon = itemView.findViewById(R.id.imgIcon);
-            txtTitle = itemView.findViewById(R.id.txtTitle);
+            imgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
+            txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
         }
     }
 }
