@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -39,11 +40,20 @@ public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.
     @Override
     public void onBindViewHolder(ProgrammingViewHolder holder, int position) {
 
-        User user = data[position]; //Here we get user data which we have to bind in view
+        final User user = data[position]; //Here we get user data which we have to bind in view
         //Binding text title
         holder.txtTitle.setText(user.getLogin());
         //Binding Image view using GLIDE library
         Glide.with(holder.imgIcon.getContext()).load(user.getAvatarUrl()).into(holder.imgIcon);
+        //Grabbing click event on selected view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Here we can do any task on selected view
+                //Example we create a toast here
+                Toast.makeText(context, "Selected User "+ user.getLogin(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
